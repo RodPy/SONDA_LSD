@@ -85,7 +85,7 @@ class AtlasI2C:
         self.set_i2c_address(prev_addr) # restore the address we were using
         return i2c_devices
 
-dir= {"DO":97,"OPR":98,"PH":99, "CE":100}
+dir= {"DO":97,"OPR":98,"PH":99, "CE":100, "BO":103}
 
 prom= 1
 
@@ -103,6 +103,25 @@ def leerSensores(mode,sensor):
                 AtlasI2C.long_timeout
                 print(
                     "Lectura de "+ str(sensor)+" : OPERACION CORRECTA" )
+            except KeyboardInterrupt:
+                print("stopped")
+        ##mesure=mesure/prom
+    return mesure
+
+def bomba(mode,volumen):
+    
+    device = AtlasI2C()      
+    add=    dir[BO]
+    device.set_i2c_address(add)
+    mesure=0
+    if mode.upper().startswith("D"):
+        for x in range(0, prom):
+            try:
+                operacion=mode+volumen 
+                mesure=device.query("operacion")
+                AtlasI2C.long_timeout
+                print(
+                    "Activando Bomba ")
             except KeyboardInterrupt:
                 print("stopped")
         ##mesure=mesure/prom
