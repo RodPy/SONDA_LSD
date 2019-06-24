@@ -17,7 +17,9 @@ T=[1,2]
 SEN= {"Temp":T[0],"DO":DO,"OPR":98,"PH":PH, "CE":CE[0:4],"TDS": CE[5], "S": CE[7:11]}
 print (SEN)
 
-#
+#para usar la bomba 
+
+bomba("D", 15)
 
 #print (OPR)
 ##print ("CE: "+ str(CE[0:4]))
